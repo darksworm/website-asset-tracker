@@ -1,0 +1,4 @@
+{
+  "jquery/jq.js": "http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js",
+  "stackoverflow/all.css": "http://cdn.sstatic.net/Sites/stackoverflow/all.css?v=b1d40ce48d47"
+}

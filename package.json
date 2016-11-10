@@ -1,0 +1,19 @@
+{
+  "name": "asset-tracker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "run.sh",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/darksworm/asset-tracker.git"
+  },
+  "author": "darksworm",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/darksworm/asset-tracker/issues"
+  },
+  "homepage": "https://github.com/darksworm/asset-tracker#readme",
+  "dependencies": {
+    "js-beautify": "^1.6.4"
+  }
+}
