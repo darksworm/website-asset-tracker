@@ -7,6 +7,7 @@ function finish {
     rm ${lockfile}
     # if failed reset assets folder to HEAD
     if [ "$1" -eq "1" ]; then
+        git rm -rf assets/*
         git checkout HEAD -- assets/
     fi
     exit $1
