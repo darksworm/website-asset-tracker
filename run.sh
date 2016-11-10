@@ -13,8 +13,8 @@ function finish {
 }
 
 if [ -f "$lockfile" ] && kill -0 "$(cat ${lockfile})" 2>/dev/null; then
-	echo Still running
-	finish 0
+    echo Still running
+    finish 0
 fi
 
 echo $$ > ${lockfile}
