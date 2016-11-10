@@ -17,15 +17,15 @@ for (i in files) {
 
         let beautify;
 
-        if(file.endsWith('.css')){
+        if (file.endsWith('.css')) {
             beautify = beautify_css;
-        } else if(file.endsWith('.js')) {
+        } else if (file.endsWith('.js')) {
             beautify = beautify_js;
-        } else if(file.endsWith('.html')) {
+        } else if (file.endsWith('.html')) {
             beautify = beautify_html;
         }
 
-        if(beautify) {
+        if (beautify) {
             fs.writeFile(file, beautify(data, {indent_size: 4}), function (err) {
                 if (err) {
                     throw err;

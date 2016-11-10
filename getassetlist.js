@@ -3,7 +3,7 @@ var fs = require('fs'),
     keys = [],
     values = [];
 
-for (var i in dict){
+for (var i in dict) {
     keys.push(i);
     values.push(dict[i])
 }
