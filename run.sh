@@ -21,8 +21,7 @@ fi
 echo $$ > ${lockfile}
 
 # remove old files
-git rm -rf assets/*
-touch assets/.gitignore
+git rm -rf ${PWD}/assets/*
 
 # get array of relative dirs and urls
 result=($(node getassetlist.js | sed 's/\"//g' | sed 's/,/ /g' | tr -d '[],'))
@@ -35,9 +34,9 @@ echo
 for i in $(seq 0 $(expr ${len} - 1))
 do
     # make file directory recursively
-    mkdir -p assets/${result[$i]%/*}
+    mkdir -p ${PWD}/assets/${result[$i]%/*}
     # wget file and save to defined directory
-    wget -O assets/${result[$i]} ${result[$(expr ${i} + ${len})]} -q --show-progress --no-cache || { echo wget failed; finish 1; }
+    wget -O ${PWD}/assets/${result[$i]} ${result[$(expr ${i} + ${len})]} -q --show-progress --no-cache || { echo wget failed; finish 1; }
     files+=${PWD}/assets/${result[$i]}" "
 done
 
