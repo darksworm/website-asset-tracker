@@ -14,6 +14,8 @@
   },
   "homepage": "https://github.com/darksworm/website-asset-tracker#readme",
   "dependencies": {
-    "js-beautify": "^1.6.4"
+    "js-beautify": "^1.6.4",
+    "mkdirp": "^0.5.1",
+    "request": "^2.79.0"
   }
 }

@@ -28,49 +28,17 @@ fi
 
 if [ -f "$lockfile" ] && kill -0 "$(cat ${lockfile})" 2>/dev/null; then
     echo Still running
-    finish 0
+    finish 1
 fi
 
 echo $$ > ${lockfile}
 
-# get array of relative dirs and urls
-result=($(node getassetlist.js | sed 's/\"//g' | sed 's/,/ /g' | tr -d '[],'))
+node run.js
 
-if [[ -z "${result}" ]]; then
-    error "failed to parse urls.json"
-    finish 1
-fi
-
-# remove old files
-rm -rf assets/*
-
-len=$(expr ${#result[@]} / 2)
-# parameter for beautify script, all downloaded file absolute paths with spaces as delimiters
-files=""
-exit_code=0
-
-echo
-
-for i in $(seq 0 $(expr ${len} - 1))
-do
-    # make file directory recursively
-    mkdir -p ${PWD}/assets/${result[$i]%/*}
-    # wget file and save to defined directory
-    wget -O ${PWD}/assets/${result[$i]} ${result[$(expr ${i} + ${len})]} -q --show-progress --no-cache 2>&1
-    if [ "$?" != "0" ]; then
-        error "wget failed for url: "${result[$(expr ${i} + ${len})]}
-        exit_code=1
-    fi
-    files+=${PWD}/assets/${result[$i]}" "
-done
-
-node beautify.js ${files:0:${#files}-1}
-beautify_result=$?
-
-if [[ "$beautify_result" == "1" ]]; then
-    echo
-    redoutput "Beautify returned errors, check error.log"
-    exit_code=1
+if [ "$?" -eq "1" ];
+then
+  redoutput "NODE SCRIPT PRODUCED ERRORS, CHECK error.log"
+  finish 1
 fi
 
 echo
@@ -85,4 +53,4 @@ else
     echo "No changes found"
 fi
 
-finish ${exit_code}
+finish 0
